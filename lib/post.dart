@@ -32,10 +32,9 @@ class PostPage extends State<StatePostPage> {
               Image.file(File(path.join(widget.image.path))),
               TextButton(
                   onPressed: () {
-                    postData(widget.image);
-                    /*setState(() {
-
-                    });*/
+                    setState(() {
+                      postData(widget.image);
+                    });
                   },
                   child: Text('上の画像をAPIに送信します')),
               Text(val,style:TextStyle(fontSize: 15))
@@ -49,9 +48,11 @@ class PostPage extends State<StatePostPage> {
 }
 
 void postData(XFile img) async {
-  String filePath = File(path.join(img as String)) as String;
+  print("パス：" + img.path);
+  File file = File(img.path);
   // 画像のバイナリデータを読み込みます.
-  ByteData data = await rootBundle.load(filePath); // 修正
+  ByteData data = await file.readAsBytes().then((bytes) =>
+          ByteData.sublistView(Uint8List.fromList(bytes)));
   List<int> imageBytes = data.buffer.asUint8List(); // 修正
 
   var response = await http
@@ -68,8 +69,4 @@ void postData(XFile img) async {
   print('Content: $content');
 
   val = content;
-
-  //print(response.statusCode);
-  //print(response.body);
-  //contentだけほしい
 }

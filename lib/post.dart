@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart'; // 追加
 import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
@@ -28,7 +29,7 @@ class PostPage extends State<StatePostPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(widget.image.path),
+              Image.file(File(path.join(widget.image.path))),
               TextButton(
                   onPressed: () {
                     postData(widget.image);

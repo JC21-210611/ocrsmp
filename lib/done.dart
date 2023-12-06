@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'post.dart';
+import 'dart:io';
 
 class done extends StatelessWidget {
   const done(this.image, {Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class done extends StatelessWidget {
 
             Container(
               width: 250,
-              child: Image.asset(image.path),
+              child: Image.file(File((image.path))),
             ),
             Container(
               padding: const EdgeInsets.all(8),

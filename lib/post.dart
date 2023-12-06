@@ -38,7 +38,18 @@ class PostPage extends State<StatePostPage> {
     Map<String, dynamic> jsonDataMap = json.decode(response.body);
     // "content"フィールドの値を取得
     String content = jsonDataMap['readResult']['content'];
-    print('Content: $content');
+
+    //contentの値を1行にする
+    String contentMoji = content.replaceAll('\n', '');
+
+    //、を見つけるまでを1要素として配列に格納する
+    List<String> contentList = contentMoji.split('、');
+
+    // contentに改行コードあり、「、」なしで文字列として代入
+    content = content.replaceAll("、", "");
+
+    print(contentList);
+    //print('Content: $content');
 
     setState(() {
       val = content;

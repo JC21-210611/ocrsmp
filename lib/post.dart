@@ -49,8 +49,7 @@ class PostPage extends State<StatePostPage> {
 }
 
 void postData(XFile img) async {
-  String fileName = 'olehoge.png';
-  String filePath = path.join('image', fileName);
+  String filePath = File(path.join(img as String)) as String;
   // 画像のバイナリデータを読み込みます.
   ByteData data = await rootBundle.load(filePath); // 修正
   List<int> imageBytes = data.buffer.asUint8List(); // 修正

@@ -48,11 +48,21 @@ class PostPage extends State<StatePostPage> {
     // contentに改行コードあり、「、」なしで文字列として代入
     content = content.replaceAll("、", "");
 
-    print(contentList);
-    //print('Content: $content');
+    // 成分が含まれているか照合
 
-    setState(() {
-      val = content;
+
+    print(contentList);
+
+    setState(() {   //この処理を行わないと画面上での動的な変換が行われない
+      String values = "";
+      for(String s in contentList){
+        if(s.contains('糖')){
+          values = "$values \n $s";
+          debugPrint("追加：　$s");
+          debugPrint("表示： $values");
+        }
+        val = values;
+      }
     });
   }
 

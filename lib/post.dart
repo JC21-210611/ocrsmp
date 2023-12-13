@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart'; // 追加
+import 'package:ocrsample/dbfood.dart';
 import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -50,16 +51,21 @@ class PostPage extends State<StatePostPage> {
 
     // 成分が含まれているか照合
 
-
-    print(contentList);
+    List<Map<String, dynamic>> databaseContent = await dbPage().getData();
+    debugPrint("持ってきたDB:$databaseContent");
 
     setState(() {   //この処理を行わないと画面上での動的な変換が行われない
       String values = "";
-      for(String s in contentList){
-        if(s.contains('糖')){
-          values = "$values \n $s";
-          debugPrint("追加：　$s");
-          debugPrint("表示： $values");
+
+      for(Map<String, dynamic> dbc in databaseContent){
+        for(String s in contentList) {
+          String word = dbc['foodname'];
+          if (s.contains(word)) {
+            values = "$values \n $s";
+            debugPrint("追加：　$s");
+            debugPrint("表示： $values");
+            break;
+          }
         }
         val = values;
       }

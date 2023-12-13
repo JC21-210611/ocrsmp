@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:ocrsample/db.dart';
-//import 'package:ocrsample/dbfood.dart';
+import 'package:ocrsample/dbfood.dart';
 import 'done.dart';
-//import 'package:sqflite/sqflite.dart';
 
 void main() {
   runApp(const MyApp());    //const無くても動く(下とセット)
@@ -116,27 +114,6 @@ class Home_Page extends State<Home_Page_State> {
                   },
                 ),
               ),
-             /*Container(
-                  margin: EdgeInsets.fromLTRB(10, 25, 10, 25),
-                  width: 230,
-                  height: 70,
-                  child:ElevatedButton(
-                    child: const Text('DB参照',
-                      style:TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.bold
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context){
-                          return YourScreen();
-                        })
-                      );
-                    },
-                  )
-              ),
               Container(
                   margin: EdgeInsets.fromLTRB(10, 25, 10, 25),
                   width: 230,
@@ -157,7 +134,7 @@ class Home_Page extends State<Home_Page_State> {
                       );
                     },
                   )
-              ),*/
+              ),
             ],
           ),
         ),

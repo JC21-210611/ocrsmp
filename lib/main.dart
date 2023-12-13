@@ -92,7 +92,7 @@ class Home_Page extends State<Home_Page_State> {
                   },
                 ),
               ),
-              /*Container(
+              Container(
                 margin: EdgeInsets.fromLTRB(10, 25, 10, 25),
                 width: 230,
                 height: 70,
@@ -116,7 +116,7 @@ class Home_Page extends State<Home_Page_State> {
                   },
                 ),
               ),
-             Container(
+             /*Container(
                   margin: EdgeInsets.fromLTRB(10, 25, 10, 25),
                   width: 230,
                   height: 70,

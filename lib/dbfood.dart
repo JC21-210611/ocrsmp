@@ -238,6 +238,7 @@ class DbHelper {
     return await db.query('food');
   }
 }
+
 class dbpage extends StatefulWidget {
   @override
   dbPage createState() => dbPage();

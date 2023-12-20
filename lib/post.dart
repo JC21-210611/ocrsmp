@@ -43,11 +43,29 @@ class PostPage extends State<StatePostPage> {
     //contentの値を1行にする
     String contentMoji = content.replaceAll('\n', '');
 
+    print(contentMoji);
+
+    //原材料後、内容量までをString型で保持
+    RegExp moji = RegExp(r"原材料名(.*?)內容量(.*)");
+    RegExpMatch? matchMoji = moji.firstMatch(contentMoji);
+    String genStr = "";
+    debugPrint("マッチしたか:$matchMoji");
+
+    if(matchMoji != null){
+      genStr = matchMoji.group(1)!.trim();
+      debugPrint("原材料後：$genStr");
+    }
+
+
     //、を見つけるまでを1要素として配列に格納する
-    List<String> contentList = contentMoji.split('、');
+    List<String> contentList = genStr.split('、');
+
+    debugPrint("LIST：$contentList");
+
 
     // contentに改行コードあり、「、」なしで文字列として代入
     content = content.replaceAll("、", "");
+    debugPrint("読み込んだ文字：$content");
 
     // 成分が含まれているか照合
 
@@ -67,8 +85,11 @@ class PostPage extends State<StatePostPage> {
             break;
           }
         }
-        val = values;
       }
+      if(values == ""){
+        values = "何も検知されませんでした";
+      }
+      val = values;
     });
   }
 

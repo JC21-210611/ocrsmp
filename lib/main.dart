@@ -138,7 +138,6 @@ class Home_Page extends State<Home_Page_State> {
             ],
           ),
         ),
-
       ),
     );
   }

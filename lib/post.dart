@@ -45,27 +45,36 @@ class PostPage extends State<StatePostPage> {
 
     print(contentMoji);
 
-    //原材料後、内容量までをString型で保持
-    RegExp moji = RegExp(r"原材料名(.*?)內容量(.*)");
-    RegExpMatch? matchMoji = moji.firstMatch(contentMoji);
     String genStr = "";
-    debugPrint("マッチしたか:$matchMoji");
 
-    if(matchMoji != null){
-      genStr = matchMoji.group(1)!.trim();
-      debugPrint("原材料後：$genStr");
+    if(contentMoji.contains("原材料")){
+      //原材料後、内容量までをString型で保持
+      RegExp moji = RegExp(r"原材料名(.*?)內容量(.*)");
+      RegExp moji2 = RegExp(r"原材料名(.*)");
+      RegExpMatch? matchMoji = moji.firstMatch(contentMoji);
+      RegExpMatch? matchMoji2 = moji2.firstMatch(contentMoji);
+
+      debugPrint("マッチしたか1:$matchMoji");
+      debugPrint("マッチしたか2:$matchMoji2");
+
+      if(matchMoji != null){
+        genStr = matchMoji.group(1)!.trim();
+        debugPrint("原材料後1：$genStr");
+      }else if(matchMoji2 != null){
+        genStr = matchMoji2.group(1)!.trim();
+        debugPrint("原材料後2：$genStr");
+      }
+    }else{
+      print("else");
+      genStr = contentMoji;
     }
-
 
     //、を見つけるまでを1要素として配列に格納する
     List<String> contentList = genStr.split('、');
 
-    debugPrint("LIST：$contentList");
-
-
     // contentに改行コードあり、「、」なしで文字列として代入
     content = content.replaceAll("、", "");
-    debugPrint("読み込んだ文字：$content");
+    debugPrint("読み込んだ文字：$contentList");
 
     // 成分が含まれているか照合
 
